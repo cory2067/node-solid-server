@@ -17,3 +17,6 @@
 /npm-debug.log
 buildy
 *.pem
+*.seal
+*.swo
+*.pub
