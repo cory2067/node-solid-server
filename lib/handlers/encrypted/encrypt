@@ -3,6 +3,6 @@
 DIR="$(dirname $0)"
 cd $DIR
 
-openssl smime -encrypt -binary -aes-256-cbc -in value.seal -out value.seal -outform DER aggpublic.pem
+openssl smime -encrypt -binary -aes-256-cbc -in value.seal -out value.seal.enc -outform DER aggpublic.pem
 
 echo "encrypted second layer"
