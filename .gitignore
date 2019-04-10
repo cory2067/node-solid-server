@@ -22,4 +22,4 @@ buildy
 *.pub
 *.enc
 *.key
-bundle*
+bundle.*

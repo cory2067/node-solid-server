@@ -1,0 +1,10 @@
+#!/bin/bash
+
+DIR="$(dirname $0)"
+cd $DIR
+
+tar cf bundle.tar value.seal filter.seal
+
+openssl smime -encrypt -binary -aes-256-cbc -in bundle.tar -out bundle.enc -outform DER aggpublic.pem
+
+echo "bundled and encrypted second layer"
