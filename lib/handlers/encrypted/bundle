@@ -1,10 +1,15 @@
 #!/bin/bash
 
 DIR="$(dirname $0)"
+ID=$1
 cd $DIR
 
-tar cf bundle.tar value.seal filter.seal
+tar cf bundle$1.tar value$1.seal filter$1.seal
 
-openssl smime -encrypt -binary -aes-256-cbc -in bundle.tar -out bundle.enc -outform DER aggpublic.pem
+openssl smime -encrypt -binary -aes-256-cbc -in bundle$1.tar -out bundle$1.enc -outform DER aggpublic$1.pem
+
+# cleanup
+rm -f bundle$1.tar value$1.seal filter$1.seal
+rm -f *$1.pem *$1.key
 
 echo "bundled and encrypted second layer"
