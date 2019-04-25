@@ -1,4 +1,31 @@
-# solid-server in Node
+## fork of solid-server supporting homomorphic encryption
+
+This is a fork of node-solid-server by Cory Lynch.
+This fork contributes a single new route, at `/encrypted`, which will search
+for a desired value in the pod (e.g. user's age), and return it in an encrypted
+format compatible with solid-aggregator. 
+
+The relevant code is at `/lib/handlers/encrypted`. 
+
+### use of SEAL
+This project uses Microsoft's [SEAL library](http://sealcrypto.org) for homomorphic encryption. Specifically, it uses my JavaScript wrapper of the library (not fully-featured), called [seal.js](https://github.com/cory2067/seal.js).
+
+### post.js
+This file is invoked for each POST request to `/encrypted`. The request must be
+authenticated as the owner of this pod. The request body expects the following 
+parameters as JSON:
+
+- docs: an array of URIs, containing .ttl files that the user can access
+- study: an object containing:
+  - aggKey: public key of the solid-aggregator
+  - key: public key of solid-researcher (generated with SEAL)
+  - function: an aggregation function (e.g. average(?age))
+  - query:  a SPARQL query to execute
+
+It generates an encrypted result that is understood by [solid-aggregator](https://github.com/cory2067/solid-aggregator)
+
+-----
+Original README:
 
 [![](https://img.shields.io/badge/project-Solid-7C4DFF.svg?style=flat-square)](https://github.com/solid/solid)
 [![Build Status](https://travis-ci.org/solid/node-solid-server.svg?branch=master&style=flat-square)](https://travis-ci.org/solid/node-solid-server)
