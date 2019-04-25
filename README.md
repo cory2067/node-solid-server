@@ -24,6 +24,9 @@ parameters as JSON:
 
 It generates an encrypted result that is understood by [solid-aggregator](https://github.com/cory2067/solid-aggregator)
 
+## in production
+To make this work in production, I figured I could just change `config.json` to point to my actual URL instead of localhost. Apparently, that wasn't enough. To solve it, I did a find-and-replace for every instance of "localhost:8443" in this whole directory to my URL. Sketchy, I know.
+
 -----
 Original README:
 
